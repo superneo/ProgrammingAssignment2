@@ -1,10 +1,10 @@
-## Put comments here that give an overall description of what your
-## functions do
+## Here are a pair of functions that cache the inverse of a matrix.
+## More details will come along with each function as following.
 
-## Write a short comment describing this function
 
 ## This function creates a special "matrix" object that can cache its inverse.
 ## It’s assumed that the matrix supplied is always invertible.
+
 makeCacheMatrix <- function(x = matrix()) {
     inv <- NULL
     set <- function(y) {
@@ -13,15 +13,14 @@ makeCacheMatrix <- function(x = matrix()) {
             if(!all(x == y)) {
                 ## but not all elements in both are equal, respectively
                 x <<- y
-                inv <<- solve(x)
+                inv <<- solve(y)
             }
         }
         else {
             ## if x and y have different dimensions
             x <<- y
-            inv <<- solve(x)
+            inv <<- solve(y)
         }
-        y
     }
     get <- function() x
     setInverse <- function(inverse) inv <<- inverse
@@ -30,11 +29,10 @@ makeCacheMatrix <- function(x = matrix()) {
 }
 
 
-## Write a short comment describing this function
-
 ## This function computes the inverse of the special "matrix" returned by makeCacheMatrix above.
 ## If the inverse has already been calculated (and the matrix has not changed), then this function
 ## should retrieve the inverse from the cache.
+
 cacheSolve <- function(x, ...) {
     ## Return a matrix that is the inverse of 'x'
     inv <- x$getInverse()
